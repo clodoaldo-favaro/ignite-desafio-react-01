@@ -1,0 +1,34 @@
+.taskForm {
+    max-width: 46rem;
+    margin: -27px auto;
+    
+    height: 54px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.taskForm input[type="text"] {
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--gray-700);
+    background: var(--gray-500);
+    color: var(--gray-100);
+    flex-grow: 1;
+}
+
+.taskForm button {
+    height: 52px;
+    background: var(--blue-dark);
+    color: var(--gray-100);
+    border: none;
+    border-radius: 8px;
+    font-size: var(--font-small);
+    font-weight: bold;
+    padding: 1rem;
+    width: 90px;
+}
+
+.taskForm button:hover {
+    background: var(--blue);
+}
