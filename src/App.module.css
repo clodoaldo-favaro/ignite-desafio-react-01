@@ -18,6 +18,10 @@
 }
 
 .taskForm button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     height: 52px;
     background: var(--blue-dark);
     color: var(--gray-100);
