@@ -15,8 +15,8 @@
 
   --danger: #E25858;
 
-  --font-small: 0.875rem;
-  --font-smaller: 0.75rem;
+  --font-small: 0.875rem; /* 14px */
+  --font-smaller: 0.75rem; /* 12px */
 
   --border-radius: 5px;
 }
