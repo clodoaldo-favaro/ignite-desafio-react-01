@@ -1,19 +1,23 @@
 import { Header } from './components/Header';
 import { PlusCircle } from 'phosphor-react';
 import { EmptyTask } from './components/EmptyTask';
+import { Task } from './components/Task';
+import uuid from 'react-uuid';
+
 
 import './global.css';
 import styles from './App.module.css';
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
 
 
-interface Task {
+interface TaskProps {
+  id: string;
   description: string;
   completed: boolean;
 }
 
 export function App() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
 
   const [newTaskDescription, setNewTaskDescription] = useState('');
 
@@ -21,6 +25,7 @@ export function App() {
     event.preventDefault();
 
     const newTask = {
+      id: uuid(),
       description: newTaskDescription,
       completed: false
     };
@@ -36,6 +41,19 @@ export function App() {
 
   function handleNewTaskInvalid(event: InvalidEvent<HTMLInputElement>) {
     event.target.setCustomValidity('Preencha a descrição da nova tarefa');
+  }
+
+  function changeTaskStatus(taskId: string) {
+    debugger;
+    const newTasks = tasks.map(task => {
+      if (task.id === taskId) {
+        return {...task, completed: !task.completed};
+      } else {
+        return task;
+      }
+    });
+
+    setTasks(newTasks);
   }
 
   const isNewTaskDescriptionEmpty = newTaskDescription.length === 0;
@@ -81,7 +99,15 @@ export function App() {
             <div className={`${styles.tasksList} ${isTasksEmpty ? styles.hidden : ''}`}>
               {
                 tasks.map(task => {
-                  return <p>{task.description}</p>
+                  return (
+                    <Task 
+                      key={task.id}
+                      id={task.id}
+                      completed={task.completed}
+                      description={task.description}
+                      onTaskStatusChange={changeTaskStatus}
+                    />
+                  )
                 })
               }
             </div>
