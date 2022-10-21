@@ -65,3 +65,7 @@
     text-decoration: line-through;
     color: var(--gray-300);
 }
+
+.trash {
+    cursor: pointer;
+}

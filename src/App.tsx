@@ -44,7 +44,6 @@ export function App() {
   }
 
   function changeTaskStatus(taskId: string) {
-    debugger;
     const newTasks = tasks.map(task => {
       if (task.id === taskId) {
         return {...task, completed: !task.completed};
@@ -54,6 +53,12 @@ export function App() {
     });
 
     setTasks(newTasks);
+  }
+
+  function deleteTask(taskId: string) {
+    const tasksWithoutDeleted = tasks.filter(task => task.id !== taskId);
+
+    setTasks(tasksWithoutDeleted);
   }
 
   const isNewTaskDescriptionEmpty = newTaskDescription.length === 0;
@@ -106,6 +111,7 @@ export function App() {
                       completed={task.completed}
                       description={task.description}
                       onTaskStatusChange={changeTaskStatus}
+                      onDeleteTask={deleteTask}
                     />
                   )
                 })

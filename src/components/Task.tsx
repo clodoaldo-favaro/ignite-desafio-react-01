@@ -6,14 +6,17 @@ interface TaskProps {
     description: string;
     completed: boolean;
     onTaskStatusChange: (taskId: string) => void;
+    onDeleteTask: (taskId: string) => void;
 }
 
 
-export function Task({id, description, completed, onTaskStatusChange}: TaskProps) {
-    
+export function Task({id, description, completed, onTaskStatusChange, onDeleteTask}: TaskProps) {
     function handleTaskStatusChange() {
-        debugger;
         onTaskStatusChange(id);
+    }
+
+    function handleDeleteTask() {
+        onDeleteTask(id);
     }
     
     return (
@@ -26,7 +29,7 @@ export function Task({id, description, completed, onTaskStatusChange}: TaskProps
             
             <p className={completed ? styles.completed : ''}>{description}</p>
             
-            <Trash size={24} />
+            <Trash className={styles.trash} size={24} onClick={handleDeleteTask}/>
         </div>
     );
 }
